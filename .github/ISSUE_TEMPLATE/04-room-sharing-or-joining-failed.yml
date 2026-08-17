@@ -1,0 +1,148 @@
+name: Sharing or joining a room failed
+description: An invitation would not send, would not open, or the room will not load on the second Mac.
+title: "[Room sharing] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Room sharing connects the invited Mac directly to the owner Mac over a
+        private HTTPS path. There is no Doppl relay in the middle, so the owner
+        Mac must be awake, running Doppl, and reachable on the same private
+        network (Tailscale is the supported path for the macOS pilot).
+
+        **Never paste an invitation link.** A live invitation is a credential —
+        anyone who reads this public issue could use it. Describe it instead
+        ("a one-use link created about an hour ago"). Also keep out
+        conversation contents, prompts, credentials, and repository or folder
+        paths. Suspected vulnerability? Use
+        [private reporting](https://github.com/sarptandoven/doppl-releases/security/advisories/new).
+
+  - type: dropdown
+    id: side
+    attributes:
+      label: Which Mac are you filing from?
+      options:
+        - The owner Mac (I am sharing the room)
+        - The invited Mac (I am trying to join)
+        - Both — I control both Macs
+    validations:
+      required: true
+
+  - type: input
+    id: version_owner
+    attributes:
+      label: Doppl version on the owner Mac
+      placeholder: "0.2.3"
+    validations:
+      required: true
+
+  - type: input
+    id: version_invited
+    attributes:
+      label: Doppl version on the invited Mac
+      description: Write "unknown" if you do not control that Mac.
+      placeholder: "0.2.3"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: step
+    attributes:
+      label: Where does it fail?
+      options:
+        - Owner Mac — I cannot enable the private HTTPS path in Settings → Shared access
+        - Owner Mac — I cannot create an invitation
+        - Invited Mac — the link does not open Doppl at all
+        - Invited Mac — Doppl opens but rejects the invitation
+        - Invited Mac — it joins, then the room never loads or times out
+        - It worked once, then the invited Mac lost access
+        - Removing/revoking an invited computer did not work
+    validations:
+      required: true
+
+  - type: textarea
+    id: message
+    attributes:
+      label: The exact message shown
+      description: >-
+        Copy the wording on the failing side. **Redact any URL** — replace the
+        host and token with `<redacted>`. A screenshot is fine as long as no
+        invitation link is visible in it.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tailscale
+    attributes:
+      label: Tailscale status
+      options:
+        - Both Macs are connected to the same Tailscale network
+        - Both have Tailscale installed but I am not sure they are on the same network
+        - Only one Mac has Tailscale
+        - Neither has Tailscale — we are using something else
+        - I do not know what Tailscale is
+    validations:
+      required: true
+
+  - type: dropdown
+    id: owner_awake
+    attributes:
+      label: Was the owner Mac awake with Doppl open at the moment it failed?
+      description: >-
+        The owner Mac is the room server. If it sleeps, the room goes away for
+        everyone else.
+      options:
+        - "Yes, awake and Doppl was open"
+        - "It may have been asleep or on a locked screen"
+        - "Doppl was not running on it"
+        - "I do not know"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: invitation
+    attributes:
+      label: About the invitation (do not paste it)
+      options:
+        - Freshly created, never opened before
+        - It had been opened once already on another Mac
+        - It was created some time ago (hours or days)
+        - I re-sent or re-created it and it still failed
+        - Not applicable
+    validations:
+      required: true
+
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostic report from the failing Mac (optional but the fastest path)
+      description: >-
+        In Doppl, open **Settings**, find the **Personal Doppl → Need help?**
+        panel, and choose **Save diagnostic report**. Paste the JSON here. It
+        contains only coded health states, version strings, and coarse
+        size/age bands — no conversations, prompts, credentials, invitation
+        links, logs, or folder paths. If you can get one from *both* Macs, say
+        which is which. Open the file and read it before you paste it. If you
+        cannot find that panel in your Doppl window, say so in the issue — it
+        is not shown everywhere, and we can still help without it.
+      render: json
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: hygiene
+    attributes:
+      label: Before you submit
+      options:
+        - label: >-
+            I have not pasted an invitation link, a private hostname, a URL
+            containing a token, or a QR code image of one.
+          required: true
+        - label: >-
+            I have not included conversation contents, prompts, credentials, or
+            repository/folder paths.
+          required: true
+        - label: >-
+            If I pasted a diagnostic report, I opened it first and I am willing
+            for its contents to be public.
+          required: false
