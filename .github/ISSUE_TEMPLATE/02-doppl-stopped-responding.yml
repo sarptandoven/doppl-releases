@@ -1,0 +1,125 @@
+name: Doppl stopped responding
+description: The app opens but hangs, spins, shows an empty room list, or says it cannot reach itself.
+title: "[Stopped responding] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Doppl runs a small server on your own Mac. When the app opens but
+        nothing loads, that server is usually the thing that stopped.
+
+        **This issue is public.** Do not paste conversation or agent output,
+        prompts, credentials or API keys, invitation links, repository or folder
+        paths, or file contents. Suspected vulnerability? Use
+        [private reporting](https://github.com/sarptandoven/doppl-releases/security/advisories/new)
+        instead.
+
+  - type: input
+    id: version
+    attributes:
+      label: Doppl version
+      description: "**Doppl → About Doppl**, or the installer file name."
+      placeholder: "0.2.3"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: macOS version and processor
+      placeholder: "macOS 14.5, Apple Silicon"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: symptom
+    attributes:
+      label: What does the app do?
+      options:
+        - The window is blank or spins forever
+        - The window loads but every action hangs
+        - It says Doppl is unavailable or cannot be reached
+        - The beachball appears and macOS offers to force quit
+        - Rooms load but messages never send or never arrive
+        - Something else
+    validations:
+      required: true
+
+  - type: textarea
+    id: message
+    attributes:
+      label: The exact message or banner text
+      description: Copy the wording, or attach a screenshot of the message only.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: timing
+    attributes:
+      label: When does it happen?
+      options:
+        - Every launch, immediately
+        - After the Mac wakes from sleep
+        - After the app has been open a while
+        - After starting or stopping an agent run
+        - Randomly, no pattern I can see
+    validations:
+      required: true
+
+  - type: dropdown
+    id: restart
+    attributes:
+      label: Does quitting Doppl completely and reopening it fix it?
+      options:
+        - "Yes, every time"
+        - "Sometimes"
+        - "No"
+        - "I have not tried"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: repair
+    attributes:
+      label: Have you used Repair Doppl (Settings → Personal Doppl)?
+      options:
+        - "I have not tried it"
+        - "I do not see that button"
+        - "I ran it and it fixed the problem"
+        - "I ran it and the problem came back"
+        - "I ran it and it failed"
+    validations:
+      required: true
+
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostic report (optional but the fastest path)
+      description: >-
+        In Doppl, open **Settings**, find the **Personal Doppl → Need help?**
+        panel, and choose **Save diagnostic report**. Paste the JSON here. It
+        contains only coded health states, version strings, and coarse
+        size/age bands — no conversations, prompts, credentials, logs, or
+        folder paths. Save it *while the problem is happening* if you can: the
+        report records the current local-server state, which is the single
+        most useful field for this symptom. Open the file and read it before
+        you paste it. If you cannot find that panel in your Doppl window, say
+        so in the issue — it is not shown everywhere, and we can still help
+        without it.
+      render: json
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: hygiene
+    attributes:
+      label: Before you submit
+      options:
+        - label: >-
+            I have not included conversation contents, prompts, credentials,
+            invitation links, or repository/folder paths.
+          required: true
+        - label: >-
+            If I pasted a diagnostic report, I opened it first and I am willing
+            for its contents to be public.
+          required: false
