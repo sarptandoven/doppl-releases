@@ -1,0 +1,139 @@
+name: My agent gave no reply
+description: You sent a message or started work, and nothing came back.
+title: "[No reply] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Doppl does not supply the model. It drives a coding agent that is
+        already logged in on your Mac (Claude Code, Codex, or another supported
+        one), so a silent agent is often a credential or install problem on that
+        side rather than a Doppl bug. The questions below separate the two.
+
+        **This issue is public.** Do not paste the conversation, the agent's
+        output, your prompt, credentials or API keys, or repository/folder
+        paths. Describe what happened instead of quoting it. Suspected
+        vulnerability? Use
+        [private reporting](https://github.com/sarptandoven/doppl-releases/security/advisories/new).
+
+  - type: input
+    id: version
+    attributes:
+      label: Doppl version
+      description: "**Doppl → About Doppl**, or the installer file name."
+      placeholder: "0.2.3"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: macOS version and processor
+      placeholder: "macOS 14.5, Apple Silicon"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Which coding agent is this room or agent set to use?
+      options:
+        - Claude Code
+        - Codex
+        - Another one (say which below)
+        - I do not know
+    validations:
+      required: true
+
+  - type: dropdown
+    id: shape
+    attributes:
+      label: What actually happened?
+      options:
+        - Nothing at all — no reply, no error, no spinner
+        - It showed it was working, then stopped with no reply
+        - It replied with an error instead of an answer
+        - It started replying and the reply vanished or never saved
+        - It replied, but only after I reopened the app
+        - It only fails after I stop a run and continue it
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the request without quoting it
+      description: >-
+        For example: "asked it to rename a function in a small repo", "asked a
+        plain question with no folder selected". Do not paste the prompt itself.
+      placeholder: "I asked it to summarise a file in my selected folder. Roughly 2 sentences of instruction, nothing unusual."
+    validations:
+      required: true
+
+  - type: textarea
+    id: message
+    attributes:
+      label: The exact on-screen error or banner, if there was one
+      description: >-
+        Copy only the framing message Doppl showed (for example a red banner or
+        a "run unavailable" notice) — not the agent's own output.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: cli
+    attributes:
+      label: Does that coding agent work in Terminal on this Mac right now?
+      description: >-
+        Run it in Terminal and ask it something trivial. If it asks you to log
+        in again, that is very likely the whole problem.
+      options:
+        - "Yes, it answers normally in Terminal"
+        - "No — it asks me to log in again"
+        - "No — it errors in Terminal too"
+        - "The command is not installed / not found"
+        - "I have not tried"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: How often?
+      options:
+        - Every single time
+        - Only for long or complex requests
+        - Only in a shared room, not in my own
+        - Intermittently
+    validations:
+      required: true
+
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostic report (optional but the fastest path)
+      description: >-
+        In Doppl, open **Settings**, find the **Personal Doppl → Need help?**
+        panel, and choose **Save diagnostic report**. Paste the JSON here. It
+        contains only coded health states, version strings, and coarse
+        size/age bands — no conversations, prompts, credentials, logs, or
+        folder paths. Open the file and read it before you paste it. If you
+        cannot find that panel in your Doppl window, say so in the issue — it
+        is not shown everywhere, and we can still help without it.
+      render: json
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: hygiene
+    attributes:
+      label: Before you submit
+      options:
+        - label: >-
+            I have not included the conversation, the agent's output, my prompt,
+            credentials, or repository/folder paths.
+          required: true
+        - label: >-
+            If I pasted a diagnostic report, I opened it first and I am willing
+            for its contents to be public.
+          required: false
