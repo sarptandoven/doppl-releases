@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability privately
+    url: https://github.com/sarptandoven/doppl-releases/security/advisories/new
+    about: Never open a public issue for a vulnerability. Use private reporting instead.
+  - name: What to send, and what never to send
+    url: https://github.com/sarptandoven/doppl-releases/blob/main/SUPPORT.md
+    about: How to save a diagnostic report and which details to keep off a public issue.
+  - name: What stays on your Mac
+    url: https://github.com/sarptandoven/doppl-releases/blob/main/PRIVACY.md
+    about: The local-data boundary, before you decide what to share.
