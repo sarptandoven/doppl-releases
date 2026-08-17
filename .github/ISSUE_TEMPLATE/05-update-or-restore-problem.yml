@@ -1,0 +1,128 @@
+name: Update, backup, or restore problem
+description: An update failed or would not install, or a backup or restore did not work.
+title: "[Update/restore] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Doppl is local-first: there is no server-side copy of your work, and no
+        operator who can recover data you have not backed up. That makes this
+        category the highest-priority one we handle.
+
+        **If you are currently at risk of losing data, say so in the first
+        line.** Do not upgrade, reinstall, or delete anything else until you
+        have a copy of your data folder.
+
+        **This issue is public.** Do not paste your backup passphrase, any
+        credential, conversation contents, prompts, or repository/folder paths.
+        Suspected vulnerability? Use
+        [private reporting](https://github.com/sarptandoven/doppl-releases/security/advisories/new).
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: What went wrong?
+      options:
+        - An update failed to download or install
+        - Doppl updated and now behaves differently or will not open
+        - Creating a backup failed
+        - Restoring a backup failed
+        - Doppl says a repair or recovery is pending and will not clear
+        - My data appears to be missing after an update or restore
+    validations:
+      required: true
+
+  - type: input
+    id: version_from
+    attributes:
+      label: Doppl version you were on
+      placeholder: "0.2.2"
+    validations:
+      required: true
+
+  - type: input
+    id: version_to
+    attributes:
+      label: Doppl version you were updating to (if known)
+      description: Write "n/a" if this is not about an update.
+      placeholder: "0.2.3"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: macOS version and processor
+      placeholder: "macOS 14.5, Apple Silicon"
+    validations:
+      required: true
+
+  - type: textarea
+    id: message
+    attributes:
+      label: The exact message shown
+      description: Copy the wording, or attach a screenshot of the dialog only.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: data_risk
+    attributes:
+      label: Data risk right now
+      description: Answer honestly — this decides how fast we respond.
+      options:
+        - I have a recent verified backup and I am not worried
+        - I have a backup but I am not sure it is current
+        - I have no backup and my work is still on this Mac
+        - I have no backup and work appears to be missing
+    validations:
+      required: true
+
+  - type: dropdown
+    id: restore_detail
+    attributes:
+      label: If a restore failed, how did it fail?
+      options:
+        - Not applicable
+        - It rejected the password
+        - It said the backup file was invalid or corrupt
+        - It ran and finished but my work was not there
+        - It never finished
+    validations:
+      required: true
+
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostic report (optional but the fastest path)
+      description: >-
+        In Doppl, open **Settings**, find the **Personal Doppl → Need help?**
+        panel, and choose **Save diagnostic report**. Paste the JSON here. For
+        this category it is unusually useful: it records the coded update
+        state, whether a checkpoint or recovery is pending, how long ago your
+        last verified backup and last restore happened (in whole days), and a
+        coarse band for your database size. It contains no conversations,
+        prompts, credentials, passphrases, logs, or folder paths. Open the
+        file and read it before you paste it. If you cannot find that panel in
+        your Doppl window, say so in the issue — it is not shown everywhere,
+        and we can still help without it.
+      render: json
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: hygiene
+    attributes:
+      label: Before you submit
+      options:
+        - label: >-
+            I have not included my backup passphrase or any other credential.
+          required: true
+        - label: >-
+            I have not included conversation contents, prompts, invitation
+            links, or repository/folder paths.
+          required: true
+        - label: >-
+            If I pasted a diagnostic report, I opened it first and I am willing
+            for its contents to be public.
+          required: false
