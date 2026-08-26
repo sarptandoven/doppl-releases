@@ -11,7 +11,7 @@ a space where your AI works in the open, teammates can join the same conversatio
 **manager agents** run whole teams of worker agents for you. All on your own Mac.
 No account, no cloud, no setup.
 
-<a href="https://github.com/sarptandoven/doppl-releases/releases"><img src="https://img.shields.io/github/v/release/sarptandoven/doppl-releases?include_prereleases&sort=semver&display_name=tag&label=Download%20for%20macOS&color=E4B429&labelColor=11120F&logo=apple&logoColor=F7F8F5&style=for-the-badge" alt="Download for macOS" width="494" /></a>
+<a href="https://github.com/sarptandoven/doppl-releases/releases"><img src="https://img.shields.io/github/v/release/sarptandoven/doppl-releases?include_prereleases&sort=semver&display_name=tag&label=Download%20for%20macOS&color=F7F8F5&labelColor=11120F&logo=apple&logoColor=F7F8F5&style=for-the-badge" alt="Download for macOS" width="494" /></a>
 
 <br/>
 
