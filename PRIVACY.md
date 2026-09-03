@@ -20,20 +20,10 @@ Codex, Tailscale, model providers, editors, package registries, MCP servers, and
 other tools a person chooses may make their own network requests under their
 own terms.
 
-Doppl product analytics are off unless a person explicitly enables them under
-**Settings → Privacy & analytics**. When enabled, Doppl sends fixed event names,
-the app version and platform, bounded feature counters, and coarse task outcome
-categories to Doppl's analytics collector. It does not send prompts, answers,
-code, files, paths, terminal output, room messages, project names, account
-details, or session replay. A random installation identifier is irreversibly
-hashed by the collector before storage, and raw events expire after 90 days.
-The hosting edge necessarily processes network addresses to deliver and defend
-requests; the analytics application does not add them to the analytics data.
-
-The setting can be disabled at any time and honors the standard Do Not Track
-environment signal. Personal diagnostic reports are created only when the
-person chooses **Save diagnostic report**. They remain local until that person
-opens and shares the file.
+Doppl product telemetry has no built-in Doppl-operated destination and is off
+unless a person explicitly enables it and configures an endpoint. Personal
+diagnostic reports are created only when the person chooses **Save diagnostic
+report**. They remain local until that person opens and shares the file.
 
 ## Recovery and deletion
 
